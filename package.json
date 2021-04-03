@@ -1,0 +1,53 @@
+{
+  "name": "location",
+  "version": "1.0.0",
+  "description": "Project location address",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --fix --ext .js,.ts",
+    "format": "prettier --write \"src/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farango0728/location.git"
+  },
+  "author": "Fabio Andres Arango Grajales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/farango0728/location/issues"
+  },
+  "homepage": "https://github.com/farango0728/location#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.32"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint:fix",
+      "pre-push": "npm run format && npm run lint:fix"
+    }
+  }
+}

@@ -1,22 +1,27 @@
-import express from 'express'
-import morgan from 'morgan'
-import cors from 'cors'
+import 'reflect-metadata';
 import {createConnection} from 'typeorm'
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import routes from './routes/routes';
 
-import userRoutes from './routes/user.routes'
+const PORT = process.env.PORT || 3000;
 
-const app = express()
 createConnection()
+  .then(async () => {
+    // create express app
+    const app = express();
 
-//Middlewares
+    // Middlewares
+    app.use(cors());
+    app.use(helmet());
 
-app.use(cors())
-app.use(morgan('dev'))
-app.use(express.json())
+    app.use(express.json());
+    
+    // Routes
+    app.use('/', routes);
 
-//Routes
-
-app.use(userRoutes)
-
-app.listen(3000)
-console.log('server on port', 3000)
+    // start express server
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch(error => console.log(error));

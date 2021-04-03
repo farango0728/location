@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "../entity/User";
+import { validate } from 'class-validator';
 
 export const getUsers = async (
   req: Request,
@@ -32,11 +33,35 @@ export const getUser = async (
 export const createUser = async (
   req: Request,
   res: Response
-): Promise<Response> => {
+): Promise<Response>=> {
   try{
-    const newUser = await getRepository(User).create(req.body);
-    const results = await getRepository(User).save(newUser);
-    return res.json(results);
+
+    const { firstname, lastname, gender,  email, password } = req.body;
+    const user = new User();
+
+    user.firstname= firstname;
+    user.lastname= lastname;
+    user.gender= gender;
+    user.email = email;
+    user.password = password;
+
+    // Validate
+    const validationOpt = { validationError: { target: false, value: false } };
+    const errors = await validate(user, validationOpt);
+    if (errors.length > 0) {
+      return res.status(400).json(errors);
+    }
+
+    // TODO: HASH PASSWORD
+
+    const userRepository = getRepository(User);
+    try {
+      user.hashPassword();
+      const newUser = await userRepository.save(user);
+      return res.status(200).json(newUser);
+      }catch (e) {
+      return res.status(409).json({ message: 'email already exist' });
+    }
   }catch (error) {
     console.log('createUser Error:', error);
     return error;
@@ -48,6 +73,7 @@ export const updateUser = async (
   res: Response
 ): Promise<Response> => {
   try{
+    
     const user = await getRepository(User).findOne(req.params.id);
     if (user) {
       getRepository(User).merge(user, req.body);

@@ -47,13 +47,11 @@ Si necesita actualizar `npm`, puede hacerlo usando.
 
 Crear el archivo .env y configurar las siguientes variables
 
-- PPName = 
-- DBDriver = 
-- DBHost = 
-- DBUser = 
-- DBName = 
-- DBPassword = 
-- TOKEN_SECRET = 
+- JWT_SECRET = 
+- SALT = 
+- EXPIRES_IN =
+- TOKEN_HERE =
+ 
 
 ## Ejecutar en Desarrollo
 

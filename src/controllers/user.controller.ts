@@ -8,7 +8,7 @@ export const getUsers = async (
   res: Response
 ): Promise<Response> => {
   try{
-    const users = await getRepository(User).find();
+    const users = await getRepository(User).find({ select: ['id', 'firstname', 'lastname', 'gender',  'email', 'role', 'createdAt'] });
     return res.json(users);
   }catch (error) {
       console.log('getUsers Error:', error);
@@ -36,7 +36,7 @@ export const createUser = async (
 ): Promise<Response>=> {
   try{
 
-    const { firstname, lastname, gender,  email, password } = req.body;
+    const { firstname, lastname, gender,  email, password, role} = req.body;
     const user = new User();
 
     user.firstname= firstname;
@@ -44,6 +44,7 @@ export const createUser = async (
     user.gender= gender;
     user.email = email;
     user.password = password;
+    user.role = role;
 
     // Validate
     const validationOpt = { validationError: { target: false, value: false } };

@@ -95,12 +95,14 @@ Crear el archivo .env y configurar las siguientes variables
 ## Autenticación y Autorización
 - ### Autenticacion
 -
-![image](https://user-images.githubusercontent.com/20598508/112151514-4d754200-8baf-11eb-9401-8118e404abe2.png)
+![image](https://user-images.githubusercontent.com/20598508/113518342-5ff66080-954b-11eb-949e-30568139c2b3.png)
+
   
 - ### Autorización
 
 - se efectua en login, el sistema genera el token, ese token se debe de colocar en cada llamado de los enpoint
--![image](https://user-images.githubusercontent.com/20598508/112151857-ae9d1580-8baf-11eb-81e3-913b8f22cd6e.png)
+![image](https://user-images.githubusercontent.com/20598508/113518372-8d430e80-954b-11eb-831c-2f958c8fae1b.png)
 
-- se validad el scope del usuario para los ingresos a los enpoint
+
+- se validad el rol del usuario para los ingresos a los enpoint
 

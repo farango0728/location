@@ -3,6 +3,7 @@ import { MinLength, IsNotEmpty, IsEmail } from 'class-validator';
 import bcrypt from 'bcryptjs';
 import {SharedProp} from './sharedProp.helpers'
 import {GenderType} from './types'
+import config from '../config'
 
 @Entity()
 export class User extends SharedProp {
@@ -29,10 +30,14 @@ export class User extends SharedProp {
   @MinLength(6)
   @IsNotEmpty()
   password: string;
+
+  @Column()
+  @IsNotEmpty()
+  role: string;
  
 
   hashPassword(): void {
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(config.token_secret.salt);
     this.password = bcrypt.hashSync(this.password, salt);
   }
 

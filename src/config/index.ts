@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-    here: {
-        token: process.env.TOKEN_HERE,
+    services: {
+        tokenHere: process.env.TOKEN_HERE,
+        tokenGoogle: process.env.TOKEN_GOOGLE,
       },
     token_secret :{
       secret : process.env.JWT_SECRET,

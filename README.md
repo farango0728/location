@@ -68,7 +68,7 @@ Crear el archivo .env y configurar las siguientes variables
 - ### Nodejs
   [official Node.js website](https://nodejs.org/)
 - ### Express
-  [official Hapi website](https://hapi.dev/)
+  [official Express website](https://expressjs.com/es/)
 - ### Base de datos Mysql
   [official Mysql website](https://www.mysql.com/)
 - ### TypeOrm
